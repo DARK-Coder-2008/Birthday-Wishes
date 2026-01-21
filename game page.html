@@ -1,0 +1,649 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday Prerna 🎂💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#0b0014;
+  --bg2:#220033;
+  --accent:#b46cff;
+  --glow:#e0b3ff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at top,var(--bg2),var(--bg1));
+  overflow-x:hidden;
+  color:white;
+}
+
+/* ===== STAR BACKGROUND ===== */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* ===== MUSIC CONTROL ===== */
+.music-btn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:50%;
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-size:20px;
+  box-shadow:0 0 15px rgba(180,108,255,0.6);
+  transition:.3s;
+  z-index:50;
+}
+.music-btn:hover{transform:scale(1.1);}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px 15px;
+}
+
+.glow-text{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  color:#f3d7ff;
+  text-shadow:
+    0 0 10px #b46cff,
+    0 0 25px #b46cff,
+    0 0 50px #8a2be2;
+  margin-bottom:10px;
+  min-height:1.2em;
+}
+
+.cursor{
+  display:inline-block;
+  width:3px;
+  height:1em;
+  background:#e0b3ff;
+  margin-left:6px;
+  animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+.sub{
+  opacity:.85;
+  margin-bottom:20px;
+}
+
+.btn{
+  padding:12px 26px;
+  border-radius:30px;
+  background:linear-gradient(45deg,#b46cff,#7a00cc);
+  border:none;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(180,108,255,.7);
+  transition:.3s;
+}
+.btn:hover{transform:translateY(-3px) scale(1.05);}
+
+/* ===== SECTIONS ===== */
+.section{
+  padding:80px 15px;
+  text-align:center;
+}
+
+.section h2{
+  font-size:clamp(1.6rem,4vw,2.4rem);
+  margin-bottom:30px;
+  color:#f1ccff;
+  text-shadow:0 0 15px rgba(180,108,255,.6);
+}
+
+/* ===== SURPRISE CARDS ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:18px;
+  max-width:900px;
+  margin:auto;
+}
+
+.card{
+  perspective:1000px;
+}
+
+.card-inner{
+  position:relative;
+  width:100%;
+  height:190px;
+  transform-style:preserve-3d;
+  transition:.7s;
+  cursor:pointer;
+}
+
+.card:hover .card-inner,
+.card.flip .card-inner{
+  transform:rotateY(180deg);
+}
+
+.card-face{
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  text-align:center;
+  backface-visibility:hidden;
+  box-shadow:0 0 20px rgba(180,108,255,.5);
+}
+
+.card-front{
+  background:linear-gradient(135deg,#7a00cc,#b46cff);
+  font-size:20px;
+}
+
+.card-back{
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.2);
+  transform:rotateY(180deg);
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* ===== LOVE QUIZ GAME ===== */
+.quiz-wrap{
+  max-width:500px;
+  margin:0 auto;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:22px;
+  padding:25px 18px 30px;
+  box-shadow:0 0 25px rgba(180,108,255,.6);
+}
+
+.quiz-q{
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+.quiz-options{
+  display:grid;
+  gap:12px;
+}
+
+.quiz-options button{
+  padding:10px 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.12);
+  color:white;
+  cursor:pointer;
+  transition:.25s;
+}
+.quiz-options button:hover{transform:scale(1.04);}
+
+.quiz-options button.correct{
+  background:linear-gradient(45deg,#00ffb3,#00c38a);
+  box-shadow:0 0 15px rgba(0,255,179,.7);
+}
+.quiz-options button.wrong{
+  background:linear-gradient(45deg,#ff4b4b,#cc0000);
+  box-shadow:0 0 15px rgba(255,75,75,.7);
+}
+
+.quiz-progress{
+  margin-top:18px;
+  font-size:13px;
+  opacity:.8;
+}
+
+.quiz-result{
+  display:none;
+  margin-top:25px;
+}
+
+.quiz-result h3{
+  font-size:22px;
+  color:#ffd6ff;
+  text-shadow:0 0 15px #b46cff;
+  margin-bottom:10px;
+}
+
+/* ===== FIREWORKS ===== */
+.firework{
+  position:fixed;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  pointer-events:none;
+  animation:fw 1.2s ease-out forwards;
+}
+@keyframes fw{
+  0%{transform:translate(0,0) scale(1);opacity:1;}
+  100%{transform:translate(var(--x),var(--y)) scale(.2);opacity:0;}
+}
+
+/* ===== FINAL SURPRISE POPUP ===== */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(10px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+}
+.popup.show{
+  opacity:1;
+  pointer-events:auto;
+}
+.popup-box{
+  background:radial-gradient(circle at top,#3a0066,#120018);
+  border-radius:24px;
+  padding:30px 22px 34px;
+  max-width:360px;
+  width:90%;
+  text-align:center;
+  box-shadow:0 0 40px rgba(180,108,255,.9);
+  animation:pop .6s ease;
+}
+@keyframes pop{
+  0%{transform:scale(.6);opacity:0;}
+  100%{transform:scale(1);opacity:1;}
+}
+.popup-box h3{
+  font-family:'Great Vibes',cursive;
+  font-size:34px;
+  color:#ffd6ff;
+  margin-bottom:12px;
+  text-shadow:0 0 20px #b46cff;
+}
+.popup-box p{
+  font-size:14px;
+  line-height:1.6;
+  opacity:.9;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  padding:40px 15px;
+  text-align:center;
+  opacity:.7;
+  font-size:13px;
+}
+
+/* ===== FLOATING HEARTS ===== */
+.heart{
+  position:fixed;
+  font-size:18px;
+  animation:floatUp 4s linear forwards;
+  pointer-events:none;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:1;}
+  100%{transform:translateY(-120vh) scale(.4);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- MUSIC -->
+<div class="music-btn" id="musicBtn">🔊</div>
+<audio id="bgMusic" loop autoplay>
+  <source src="https://cdn.pixabay.com/audio/2023/02/28/audio_8f5c3a25c7.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 class="glow-text" id="typingText"></h1><span class="cursor"></span>
+  <p class="sub">Today is all about smiles, surprises & a little magic ✨</p>
+  <button class="btn" onclick="scrollToSection('#cards')">Open Surprises 🎁</button>
+</section>
+
+<!-- SURPRISE CARDS -->
+<section class="section" id="cards">
+  <h2>Birthday Surprise Cards 🎁💌</h2>
+  <div class="cards">
+    <div class="card"><div class="card-inner">
+      <div class="card-face card-front">🎂</div>
+      <div class="card-face card-back">May your life be as sweet as cake and as bright as candles ✨💜</div>
+    </div></div>
+
+    <div class="card"><div class="card-inner">
+      <div class="card-face card-front">💖</div>
+      <div class="card-face card-back">You deserve unlimited smiles, love, and happiness today & always 🌸</div>
+    </div></div>
+
+    <div class="card"><div class="card-inner">
+      <div class="card-face card-front">🌟</div>
+      <div class="card-face card-back">Never stop shining — the world looks better with your glow 💫</div>
+    </div></div>
+
+    <div class="card"><div class="card-inner">
+      <div class="card-face card-front">🎁</div>
+      <div class="card-face card-back">May every dream you wish for find its way to you 💜✨</div>
+    </div></div>
+
+    <div class="card"><div class="card-inner">
+      <div class="card-face card-front">🌸</div>
+      <div class="card-face card-back">Your smile makes ordinary days feel special 💖</div>
+    </div></div>
+
+    <div class="card"><div class="card-inner">
+      <div class="card-face card-front">💫</div>
+      <div class="card-face card-back">Here’s to laughter, memories, and beautiful moments ahead 🥂✨</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- LOVE QUIZ -->
+<section class="section" id="quiz">
+  <h2>Love Quiz Game 💖🎮</h2>
+
+  <div class="quiz-wrap" id="quizBox">
+    <div class="quiz-q" id="quizQuestion">Loading...</div>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-progress" id="quizProgress"></div>
+
+    <div class="quiz-result" id="quizResult">
+      <h3>🎉 You Win! 🎉</h3>
+      <p id="quizMessage"></p>
+      <br>
+      <button class="btn" onclick="restartQuiz()">Play Again 💞</button>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL POPUP -->
+<div class="popup" id="finalPopup">
+  <div class="popup-box">
+    <h3>Prerna 💜</h3>
+    <p>
+      This little page is just to remind you how special you are ✨<br><br>
+      May your life be filled with love, smiles, laughter, and beautiful moments 🌸💖<br><br>
+      Happy Birthday once again 🎂💜
+    </p>
+    <br>
+    <button class="btn" onclick="closePopup()">Aww Thank You 🥰</button>
+  </div>
+</div>
+
+<div class="footer">Made with 💜 for Prerna</div>
+
+<script>
+/* ===== STAR BACKGROUND ===== */
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let stars = [];
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+for(let i=0;i<160;i++){
+  stars.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*1.5,
+    v:0.2+Math.random()*0.4
+  });
+}
+
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="white";
+  for(const s of stars){
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fill();
+    s.y+=s.v;
+    if(s.y>canvas.height){s.y=0;s.x=Math.random()*canvas.width;}
+  }
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+
+/* ===== MUSIC CONTROL ===== */
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+let musicOn = true;
+
+music.volume = 0.6;
+music.play().catch(()=>{});
+
+musicBtn.onclick = ()=>{
+  musicOn = !musicOn;
+  if(musicOn){
+    music.play();
+    musicBtn.textContent="🔊";
+  }else{
+    music.pause();
+    musicBtn.textContent="🔇";
+  }
+};
+
+/* ===== SMOOTH SCROLL ===== */
+function scrollToSection(id){
+  document.querySelector(id).scrollIntoView({behavior:"smooth"});
+}
+
+/* ===== FLOATING HEARTS ===== */
+setInterval(()=>{
+  const h = document.createElement("div");
+  h.className="heart";
+  h.textContent = Math.random()>.5?"💜":"💖";
+  h.style.left = Math.random()*100+"vw";
+  h.style.bottom = "-30px";
+  h.style.fontSize = 14+Math.random()*18+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+},700);
+
+/* ===== TYPING NAME EFFECT ===== */
+const text = "Happy Birthday Prerna 🎂💜";
+const typingEl = document.getElementById("typingText");
+let ti = 0;
+function typeText(){
+  if(ti < text.length){
+    typingEl.textContent += text.charAt(ti);
+    ti++;
+    setTimeout(typeText,90);
+  }
+}
+typeText();
+
+/* ===== LOVE QUIZ GAME LOGIC (10 QUESTIONS) ===== */
+const quizData = [
+  {
+    q:"💖 Who is the most special person today?",
+    options:["Everyone","Prerna","Birthday Cake","Me 😎"],
+    correct:1
+  },
+  {
+    q:"🎂 What makes birthdays more beautiful?",
+    options:["Gifts","Friends","Love & Smiles","All of these"],
+    correct:3
+  },
+  {
+    q:"💌 Friendship + Care = ?",
+    options:["Magic","Happiness","Forever Bond","All 💖"],
+    correct:3
+  },
+  {
+    q:"🌸 What color matches today's vibe best?",
+    options:["Red","Blue","Purple 💜","Black"],
+    correct:2
+  },
+  {
+    q:"✨ Who deserves unlimited happiness?",
+    options:["Prerna 💖","Prerna 💖","Prerna 💖","Prerna 💖"],
+    correct:0
+  },
+  {
+    q:"🎁 What is the best birthday gift?",
+    options:["Cake","Money","A Phone","Love & Effort 💝"],
+    correct:3
+  },
+  {
+    q:"🌙 What should never fade?",
+    options:["Stars","Smiles","Friendship 💖","Memories"],
+    correct:2
+  },
+  {
+    q:"🎉 Birthday without fun is like?",
+    options:["Sky without stars","Cake without cream","Song without music","All true 😄"],
+    correct:3
+  },
+  {
+    q:"💫 One word for Prerna?",
+    options:["Amazing","Wonderful","Special","All 💜"],
+    correct:3
+  },
+  {
+    q:"💌 Final Question: Who is loved a lot today?",
+    options:["Prerna 💖","Prerna 💖","Prerna 💖","Prerna 💖"],
+    correct:0
+  }
+];
+
+let qIndex = 0;
+let score = 0;
+
+const qEl = document.getElementById("quizQuestion");
+const optEl = document.getElementById("quizOptions");
+const progEl = document.getElementById("quizProgress");
+const resEl = document.getElementById("quizResult");
+const msgEl = document.getElementById("quizMessage");
+
+function loadQuiz(){
+  resEl.style.display="none";
+  optEl.style.display="grid";
+  const data = quizData[qIndex];
+  qEl.textContent = data.q;
+  optEl.innerHTML="";
+  data.options.forEach((opt,i)=>{
+    const btn = document.createElement("button");
+    btn.textContent = opt;
+    btn.onclick = ()=>selectOption(btn,i);
+    optEl.appendChild(btn);
+  });
+  progEl.textContent = `Question ${qIndex+1} of ${quizData.length}`;
+}
+
+function selectOption(btn,i){
+  const data = quizData[qIndex];
+  const buttons = optEl.querySelectorAll("button");
+  buttons.forEach(b=>b.disabled=true);
+
+  if(i===data.correct){
+    btn.classList.add("correct");
+    score++;
+    spawnFireworks(innerWidth/2, innerHeight/2);
+  }else{
+    btn.classList.add("wrong");
+    buttons[data.correct].classList.add("correct");
+  }
+
+  setTimeout(()=>{
+    qIndex++;
+    if(qIndex<quizData.length){
+      loadQuiz();
+    }else{
+      showResult();
+    }
+  },900);
+}
+
+function showResult(){
+  qEl.textContent="🎉 Quiz Complete!";
+  optEl.style.display="none";
+  progEl.textContent="";
+  resEl.style.display="block";
+
+  msgEl.innerHTML = `
+    You scored <b>${score}/${quizData.length}</b> 💖<br><br>
+    🌟 Special Message 🌟<br>
+    Prerna, may your life always be filled with smiles, love, and magical moments ✨💜
+  `;
+
+  for(let i=0;i<8;i++){
+    setTimeout(()=>spawnFireworks(Math.random()*innerWidth, Math.random()*innerHeight/2), i*200);
+  }
+
+  setTimeout(()=>openPopup(),1200);
+}
+
+function restartQuiz(){
+  qIndex=0;
+  score=0;
+  loadQuiz();
+}
+
+/* ===== FIREWORK EFFECT ===== */
+function spawnFireworks(x,y){
+  for(let i=0;i<25;i++){
+    const p = document.createElement("div");
+    p.className="firework";
+    const angle = Math.random()*Math.PI*2;
+    const dist = 40+Math.random()*80;
+    p.style.left = x+"px";
+    p.style.top = y+"px";
+    p.style.background = `hsl(${Math.random()*360},100%,70%)`;
+    p.style.setProperty("--x", Math.cos(angle)*dist+"px");
+    p.style.setProperty("--y", Math.sin(angle)*dist+"px");
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1200);
+  }
+}
+
+/* ===== FINAL POPUP ===== */
+const popup = document.getElementById("finalPopup");
+function openPopup(){
+  popup.classList.add("show");
+}
+function closePopup(){
+  popup.classList.remove("show");
+}
+
+/* ===== CARD FLIP ON TAP ===== */
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("click",()=>card.classList.toggle("flip"));
+});
+
+/* INIT */
+loadQuiz();
+</script>
+
+</body>
+</html>

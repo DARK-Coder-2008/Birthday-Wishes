@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Prerna 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  background:radial-gradient(circle at top,#2a003f,#05000c);
+  min-height:100vh;
+  overflow-x:hidden;
+  color:white;
+  transition:0.4s;
+}
+body.light{
+  background:linear-gradient(135deg,#fff0f7,#f2e9ff);
+  color:#3b1b5a;
+}
+canvas#stars{position:fixed;inset:0;z-index:-2;}
+
+/* 🔊 MUSIC BUTTON */
+#musicBtn,#themeBtn,#shareBtn{
+  position:fixed;
+  top:12px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff4fa7,#9f5cff);
+  border:none;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 0 15px #ff4fa7;
+  z-index:9999;
+}
+#musicBtn{right:12px;}
+#themeBtn{right:62px;}
+#shareBtn{right:112px;}
+
+/* 🎈 BALLOONS */
+.balloon{
+  position:fixed;
+  bottom:-120px;
+  font-size:32px;
+  animation:floatBalloon 12s linear infinite;
+  opacity:0.7;
+  z-index:1;
+}
+@keyframes floatBalloon{
+  0%{transform:translateY(0) translateX(0);}
+  100%{transform:translateY(-120vh) translateX(40px);}
+}
+
+/* 🎆 FIREWORKS */
+.firework{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  pointer-events:none;
+  animation:explode 1s ease-out forwards;
+}
+@keyframes explode{
+  from{transform:scale(0);}
+  to{transform:scale(1.4);opacity:0;}
+}
+
+/* 🎭 CURTAIN REVEAL */
+#curtain{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#1b002b,#05000c);
+  z-index:10000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  transition:1s ease;
+}
+#curtain h2{
+  font-size:28px;
+  margin-bottom:12px;
+  color:#ff8ed6;
+  text-shadow:0 0 20px #9f5cff;
+}
+#curtain button{
+  background:linear-gradient(135deg,#ff4fa7,#9f5cff);
+  border:none;
+  border-radius:22px;
+  padding:10px 22px;
+  color:white;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 0 20px #ff4fa7;
+}
+#curtain.hide{transform:translateY(-110%);}
+
+/* 💖 HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+/* ✅ NEW HERO DESIGN (FROM SECOND CODE STYLE) */
+.glow-text{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.6rem,7vw,4.6rem);
+  color:#f3d7ff;
+  text-shadow:
+    0 0 10px #b46cff,
+    0 0 25px #b46cff,
+    0 0 50px #8a2be2;
+  margin-bottom:8px;
+  min-height:1.2em;
+}
+
+.cursor{
+  display:inline-block;
+  width:3px;
+  height:1em;
+  background:#e0b3ff;
+  margin-left:6px;
+  animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+.subtext{
+  margin-top:8px;
+  font-size:16px;
+  opacity:0.85;
+}
+
+/* ⏳ COUNTDOWN */
+.countdown{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+}
+.cd-box{
+  background:linear-gradient(135deg,#2a003f,#12001f);
+  border-radius:14px;
+  padding:10px 14px;
+  box-shadow:0 0 12px rgba(255,79,167,0.4);
+}
+.cd-box span{
+  font-size:20px;
+  font-weight:700;
+  color:#ff8ed6;
+  display:block;
+}
+.cd-box small{
+  font-size:11px;
+  opacity:0.8;
+}
+
+/* 🍫 CAKE */
+.cake-area{
+  margin-top:22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.cake-wrap{
+  position:relative;
+  width:220px;
+  max-width:75vw;
+}
+.cake-img{
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(255,79,167,0.7);
+}
+.candle{
+  position:absolute;
+  top:55px;
+  left:50%;
+  transform:translateX(-50%);
+  width:12px;
+  height:40px;
+  background:black;
+  border-radius:6px;
+  z-index:2;
+}
+.flame{
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:14px;
+  height:18px;
+  background:radial-gradient(circle,#ffd700,#ff8c00,#ff4500);
+  border-radius:50%;
+  animation:flicker 0.3s infinite alternate;
+  box-shadow:0 0 12px #ffb703;
+}
+@keyframes flicker{
+  from{transform:translateX(-50%) scale(1);}
+  to{transform:translateX(-50%) scale(1.2);}
+}
+.blow-btn{
+  margin-top:12px;
+  background:linear-gradient(135deg,#ff4fa7,#9f5cff);
+  border:none;
+  border-radius:20px;
+  padding:8px 18px;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 0 12px #ff4fa7;
+}
+@keyframes floatLove{
+  0%{transform:translateY(0) scale(0.6); opacity:1;}
+  100%{transform:translateY(-80px) scale(1.2); opacity:0;}
+}
+
+/* 🎁 SECTION */
+.section{
+  padding:45px 16px;
+  text-align:center;
+}
+.section h2{
+  font-size:26px;
+  margin-bottom:25px;
+  color:#ff8ed6;
+  text-shadow:0 0 15px #9f5cff;
+}
+
+/* 🎁 GIFTS */
+.gifts{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:auto;
+}
+.gift{
+  background:linear-gradient(135deg,#2a003f,#12001f);
+  border-radius:18px;
+  padding:18px 10px 22px;
+  box-shadow:0 0 15px rgba(255,79,167,0.4);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:0.3s;
+}
+.gift:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(255,79,167,0.8);
+}
+.gift-icon{font-size:40px;margin-bottom:8px;}
+.gift-title{font-size:14px;font-weight:600;}
+.gift-msg{
+  font-size:13px;
+  margin-top:10px;
+  opacity:0;
+  max-height:0;
+  transition:0.4s ease;
+  line-height:1.4;
+}
+.gift.open .gift-msg{opacity:1;max-height:200px;}
+
+/* 🖼️ SLIDER */
+.slider-wrap{
+  max-width:900px;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  box-shadow:0 0 25px rgba(255,79,167,0.6);
+}
+.slider-track{
+  display:flex;
+  transition:0.6s ease;
+}
+.slider-track img{
+  width:100%;
+  flex-shrink:0;
+  object-fit:cover;
+}
+.slider-controls{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 12px;
+  pointer-events:none;
+}
+.slider-controls button{
+  pointer-events:auto;
+  background:linear-gradient(135deg,#ff4fa7,#9f5cff);
+  border:none;
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 0 12px #ff4fa7;
+}
+.slider-dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:12px;
+}
+.slider-dots span{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#555;
+  cursor:pointer;
+  transition:0.3s;
+}
+.slider-dots span.active{
+  background:#ff8ed6;
+  box-shadow:0 0 10px #ff8ed6;
+}
+
+/* 🧷 POLAROID WALL */
+.polaroid-wall{
+  max-width:1000px;
+  margin:20px auto 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:18px;
+}
+.polaroid{
+  background:white;
+  color:#333;
+  padding:8px 8px 14px;
+  border-radius:6px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.35);
+  transform:rotate(var(--r));
+  transition:0.4s;
+}
+.polaroid:hover{
+  transform:scale(1.08) rotate(0deg);
+  z-index:3;
+}
+.polaroid img{
+  width:100%;
+  border-radius:4px;
+}
+.polaroid small{
+  display:block;
+  margin-top:6px;
+  font-size:11px;
+  text-align:center;
+  color:#555;
+}
+
+/* 🎥 VIDEO */
+.video-wrap{
+  max-width:900px;
+  margin:auto;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 0 25px rgba(255,79,167,0.6);
+}
+.video-wrap video{
+  width:100%;
+  display:block;
+}
+
+/* ❤️ HEART ALERT */
+.heart-alert{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  animation:fadeIn 0.4s ease;
+}
+.hidden{display:none;}
+.heart-box{
+  width:200px;
+  height:180px;
+  background:linear-gradient(135deg,#ff4fa7,#9f5cff);
+  position:relative;
+  transform:rotate(-45deg);
+  border-radius:18px;
+  box-shadow:0 0 30px #ff4fa7;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  animation:popHeart 0.6s ease, glowPulseHeart 2s infinite;
+}
+.heart-box::before,
+.heart-box::after{
+  content:"";
+  width:200px;
+  height:180px;
+  background:inherit;
+  position:absolute;
+  border-radius:50%;
+}
+.heart-box::before{top:-100px; left:0;}
+.heart-box::after{left:100px; top:0;}
+.heart-box p{
+  transform:rotate(45deg);
+  color:white;
+  font-size:13px;
+  text-align:center;
+  padding:10px;
+  font-weight:600;
+  line-height:1.4;
+  z-index:2;
+}
+.heart-box button{
+  transform:rotate(45deg);
+  margin-top:6px;
+  background:white;
+  color:#9f5cff;
+  border:none;
+  border-radius:20px;
+  padding:6px 14px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 0 10px white;
+  z-index:2;
+}
+.floating-hearts span{
+  position:absolute;
+  color:#ffd1ec;
+  font-size:12px;
+  animation:floatUp 3s linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(0.6); opacity:1;}
+  100%{transform:translateY(-80px) scale(1.2); opacity:0;}
+}
+@keyframes popHeart{
+  0%{transform:scale(0) rotate(-45deg);}
+  70%{transform:scale(1.15) rotate(-45deg);}
+  100%{transform:scale(1) rotate(-45deg);}
+}
+@keyframes glowPulseHeart{
+  0%,100%{box-shadow:0 0 20px #ff4fa7;}
+  50%{box-shadow:0 0 35px #ff8ed6;}
+}
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* 🎁 FULLSCREEN GIFT POPUP */
+.gift-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9998;
+  animation:fadeIn 0.4s ease;
+}
+.gift-popup.hidden{display:none;}
+.gift-popup-box{
+  background:linear-gradient(135deg,#ff4fa7,#9f5cff);
+  border-radius:22px;
+  padding:24px 18px;
+  width:85%;
+  max-width:360px;
+  text-align:center;
+  box-shadow:0 0 30px #ff4fa7;
+  animation:popHeart 0.6s ease;
+}
+.gift-popup-box h3{
+  margin-bottom:10px;
+}
+.gift-popup-box p{
+  font-size:14px;
+  line-height:1.5;
+}
+.gift-popup-box button{
+  margin-top:14px;
+  background:white;
+  color:#9f5cff;
+  border:none;
+  border-radius:20px;
+  padding:8px 18px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 0 10px white;
+}
+
+/* 🔐 SECRET MESSAGE */
+.secret-box{
+  max-width:420px;
+  margin:0 auto;
+  background:linear-gradient(135deg,#2a003f,#12001f);
+  border-radius:22px;
+  padding:22px 18px;
+  box-shadow:0 0 25px rgba(255,79,167,0.6);
+}
+.secret-box h3{
+  margin-bottom:10px;
+  color:#ff8ed6;
+}
+.secret-lock{
+  font-size:40px;
+  cursor:pointer;
+  margin-bottom:12px;
+  transition:0.3s;
+}
+.secret-lock:hover{transform:scale(1.15);}
+.secret-msg{
+  font-size:14px;
+  line-height:1.5;
+  opacity:0;
+  max-height:0;
+  transition:0.5s ease;
+}
+.secret-msg.show{
+  opacity:1;
+  max-height:200px;
+}
+
+/* 🎟️ SCRATCH CARD */
+.scratch-wrap{
+  max-width:320px;
+  margin:0 auto;
+  position:relative;
+}
+.scratch-card{
+  background:linear-gradient(135deg,#ff4fa7,#9f5cff);
+  color:white;
+  border-radius:18px;
+  padding:28px 18px;
+  text-align:center;
+  font-weight:700;
+  font-size:15px;
+  box-shadow:0 0 20px rgba(255,79,167,0.7);
+}
+.scratch-cover{
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(45deg,#aaa,#aaa 10px,#888 10px,#888 20px);
+  border-radius:18px;
+  cursor:pointer;
+  transition:0.4s;
+}
+.scratch-cover.hide{opacity:0;pointer-events:none;}
+
+/* 🎮 MINI GAME */
+.game-area{
+  max-width:420px;
+  margin:0 auto;
+  background:linear-gradient(135deg,#2a003f,#12001f);
+  border-radius:22px;
+  padding:18px 14px 22px;
+  box-shadow:0 0 25px rgba(255,79,167,0.6);
+}
+.game-area h3{
+  margin-bottom:10px;
+  color:#ff8ed6;
+}
+.game-score{
+  font-size:13px;
+  margin-bottom:10px;
+}
+.game-box{
+  position:relative;
+  height:200px;
+  background:rgba(0,0,0,0.25);
+  border-radius:16px;
+  overflow:hidden;
+}
+.pop{
+  position:absolute;
+  bottom:-40px;
+  font-size:28px;
+  cursor:pointer;
+  animation:popUp 2.4s linear forwards;
+}
+@keyframes popUp{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-260px);}
+}
+
+/* 📜 TIMELINE */
+.timeline{
+  max-width:900px;
+  margin:0 auto;
+  position:relative;
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:linear-gradient(#ff8ed6,#9f5cff);
+  transform:translateX(-50%);
+}
+.t-item{
+  width:50%;
+  padding:16px 20px;
+  position:relative;
+}
+.t-item:nth-child(odd){
+  left:0;
+  text-align:right;
+}
+.t-item:nth-child(even){
+  left:50%;
+}
+.t-item::before{
+  content:"";
+  position:absolute;
+  top:24px;
+  width:14px;
+  height:14px;
+  background:#ff8ed6;
+  border-radius:50%;
+  box-shadow:0 0 12px #ff8ed6;
+}
+.t-item:nth-child(odd)::before{right:-7px;}
+.t-item:nth-child(even)::before{left:-7px;}
+.t-card{
+  background:linear-gradient(135deg,#2a003f,#12001f);
+  border-radius:18px;
+  padding:12px 14px;
+  box-shadow:0 0 20px rgba(255,79,167,0.5);
+}
+.t-card h4{
+  margin-bottom:4px;
+  color:#ff8ed6;
+  font-size:14px;
+}
+.t-card p{
+  font-size:13px;
+  line-height:1.4;
+}
+
+/* 💌 FOOTER */
+.footer{
+  padding:30px 16px 60px;
+  text-align:center;
+  font-size:13px;
+  opacity:0.7;
+}
+
+/* 📱 RESPONSIVE TIMELINE */
+@media(max-width:720px){
+  .timeline::before{left:12px;}
+  .t-item,
+  .t-item:nth-child(even),
+  .t-item:nth-child(odd){
+    width:100%;
+    left:0;
+    padding-left:32px;
+    text-align:left;
+  }
+  .t-item::before{
+    left:6px !important;
+    right:auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎭 CURTAIN -->
+<div id="curtain">
+  <h2>🎉 A Surprise For Prerna 💖</h2>
+  <button onclick="openCurtain()">Tap to Open 🎁</button>
+</div>
+
+<canvas id="stars"></canvas>
+
+<!-- 🔊 MUSIC / THEME / SHARE -->
+<button id="musicBtn">🔊</button>
+<button id="themeBtn">🌙</button>
+<button id="shareBtn">📲</button>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="happy.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ❤️ HEART ALERT -->
+<div id="heartAlert" class="heart-alert hidden">
+  <div class="heart-box">
+    <div class="floating-hearts"></div>
+    <p id="heartText"></p>
+    <button onclick="closeHeart()">OK 💖</button>
+  </div>
+</div>
+
+<!-- 🎁 FULLSCREEN GIFT POPUP -->
+<div id="giftPopup" class="gift-popup hidden">
+  <div class="gift-popup-box">
+    <h3 id="giftPopupTitle"></h3>
+    <p id="giftPopupMsg"></p>
+    <button onclick="closeGiftPopup()">Close 💖</button>
+  </div>
+</div>
+
+<!-- 🎉 HERO -->
+<section class="hero">
+  <h1 class="glow-text" id="typingText"></h1><span class="cursor"></span>
+  <p class="subtext">Wishing you smiles, laughter & endless happiness 🌸✨</p>
+
+  <!-- ⏳ COUNTDOWN -->
+  <div class="countdown">
+    <div class="cd-box"><span id="cdDays">00</span><small>Days</small></div>
+    <div class="cd-box"><span id="cdHours">00</span><small>Hours</small></div>
+    <div class="cd-box"><span id="cdMins">00</span><small>Minutes</small></div>
+    <div class="cd-box"><span id="cdSecs">00</span><small>Seconds</small></div>
+  </div>
+
+  <!-- 🍫 CAKE -->
+  <div class="cake-area">
+    <div class="cake-wrap" id="cakeWrap">
+      <div class="candle">
+        <div class="flame" id="flame"></div>
+      </div>
+      <img class="cake-img" src="img.png" alt="Chocolate Cake">
+    </div>
+    <button class="blow-btn" onclick="blowCandle()">Blow Candle 💨</button>
+  </div>
+</section>
+
+<!-- 🎁 GIFTS -->
+<section class="section">
+  <h2>🎁 Special Gifts For You</h2>
+  <div class="gifts">
+
+    <div class="gift" onclick="openGift(this,'💌 Heart Message','Prerna, you are one of the purest souls I know 💖 Your smile makes everything brighter ✨')">
+      <div class="gift-icon">💌</div>
+      <div class="gift-title">Heart Message</div>
+      <div class="gift-msg">Tap to open 💖</div>
+    </div>
+
+    <div class="gift" onclick="openGift(this,'🌸 Friendship Flower','May our friendship bloom forever just like these flowers 🌷🌼')">
+      <div class="gift-icon">🌸</div>
+      <div class="gift-title">Friendship Flower</div>
+      <div class="gift-msg">Tap to open 🌸</div>
+    </div>
+
+    <div class="gift" onclick="openGift(this,'🎂 Sweet Cake','Hope your life stays as sweet and beautiful as this cake 🎂💖')">
+      <div class="gift-icon">🎂</div>
+      <div class="gift-title">Sweet Cake</div>
+      <div class="gift-msg">Tap to open 🎂</div>
+    </div>
+
+    <div class="gift" onclick="openGift(this,'🌟 Shining Star','You are a star in everyone’s life, especially mine 🌟✨')">
+      <div class="gift-icon">🌟</div>
+      <div class="gift-title">Shining Star</div>
+      <div class="gift-msg">Tap to open 🌟</div>
+    </div>
+
+    <div class="gift" onclick="openGift(this,'🎀 Cute Surprise','Here’s a bundle of hugs, smiles, and happiness just for you 🎀🤗')">
+      <div class="gift-icon">🎀</div>
+      <div class="gift-title">Cute Surprise</div>
+      <div class="gift-msg">Tap to open 🎀</div>
+    </div>
+
+    <div class="gift" onclick="openGift(this,'💎 Precious Jewel','You are rare, precious, and truly special 💎💜')">
+      <div class="gift-icon">💎</div>
+      <div class="gift-title">Precious Jewel</div>
+      <div class="gift-msg">Tap to open 💎</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 🖼️ 9 IMAGE SLIDER -->
+<section class="section">
+  <h2>📸 Beautiful Memories</h2>
+  <div class="slider-wrap">
+    <div class="slider-track" id="sliderTrack">
+      <img src="1st.png">
+      <img src="2nd.jpg">
+      <img src="3rd.jpg">
+      <img src="4th.jpg">
+      <img src="5th.jpg">
+      <img src="6th.jpg">
+      <img src="7th.jpg">
+      <img src="8th.jpg">
+      <img src="9th.jpg">
+    </div>
+
+    <div class="slider-controls">
+      <button onclick="prevSlide()">‹</button>
+      <button onclick="nextSlide()">›</button>
+    </div>
+  </div>
+
+  <div class="slider-dots" id="sliderDots"></div>
+</section>
+
+<!-- 🧷 POLAROID WALL -->
+<section class="section">
+  <h2>🧷 Cute Polaroid Wall</h2>
+  <div class="polaroid-wall">
+    <div class="polaroid" style="--r:-6deg"><img src="1st.png"><small>Sweet Smile 💖</small></div>
+    <div class="polaroid" style="--r:5deg"><img src="2nd.jpg"><small>Fun Day 🌸</small></div>
+    <div class="polaroid" style="--r:-3deg"><img src="3rd.jpg"><small>Lovely Moment ✨</small></div>
+    <div class="polaroid" style="--r:7deg"><img src="4th.jpg"><small>Memories 🎀</small></div>
+    <div class="polaroid" style="--r:-8deg"><img src="5th.jpg"><small>Best Times 💎</small></div>
+    <div class="polaroid" style="--r:4deg"><img src="8th.jpg"><small>Forever 💜</small></div>
+  </div>
+</section>
+
+<!-- 🔐 SECRET MESSAGE -->
+<section class="section">
+  <h2>🔐 A Secret For You</h2>
+  <div class="secret-box">
+    <div class="secret-lock" onclick="unlockSecret()">🔒</div>
+    <h3>Tap the Lock 💖</h3>
+    <div class="secret-msg" id="secretMsg">
+      Prerna 🌸 You are truly special — kind heart, pure soul, and beautiful smile 💖  
+      Stay happy always and keep shining ✨
+    </div>
+  </div>
+</section>
+
+<!-- 🎟️ SCRATCH CARD -->
+<section class="section">
+  <h2>🎟️ Scratch Surprise</h2>
+  <div class="scratch-wrap">
+    <div class="scratch-card">
+      🎉 Surprise! You get unlimited smiles, hugs & happiness today 💖
+    </div>
+    <div class="scratch-cover" id="scratchCover"></div>
+  </div>
+</section>
+
+<!-- 🎮 MINI GAME -->
+<section class="section">
+  <h2>🎮  Let's Play a Game</h2>
+  <a href="game page.html"><button class="blow-btn">Play Game 🎮</button></a>
+</section>
+
+<!-- 📜 MEMORY TIMELINE -->
+<section class="section">
+  <h2>📜 Our Memories</h2>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-card">
+        <h4>🌸 First Talk</h4>
+        <p>The day we started talking — and smiles became regular 💖</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <h4>🎉 First Laugh</h4>
+        <p>Your laugh became my favorite sound ✨</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <h4>🎂 First Birthday Together</h4>
+        <p>Making your day special became my favorite job 💜</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <h4>🌟 Today</h4>
+        <p>Still wishing for your happiness every single day 💖</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🎥 VIDEO -->
+<section class="section">
+  <h2>🎥 A Special Video For You</h2>
+  <div class="video-wrap">
+    <video controls poster="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<div class="footer">
+  Made with 💖 for Prerna — Have the best birthday ever 🎉✨
+</div>
+
+<audio id="popSound" src="https://assets.mixkit.co/sfx/preview/mixkit-magical-coin-win-1936.mp3"></audio>
+
+<script>
+/* 🎭 CURTAIN */
+function openCurtain(){
+  document.getElementById("curtain").classList.add("hide");
+  confetti({particleCount:200,spread:120,origin:{y:0.6}});
+}
+
+/* 🌌 STAR BACKGROUND */
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let w,h;
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize",resize);
+resize();
+
+let stars=[];
+for(let i=0;i<120;i++){
+  stars.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*1.5+0.5,
+    s:Math.random()*0.5+0.2
+  });
+}
+
+function drawStars(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle="white";
+  stars.forEach(st=>{
+    ctx.beginPath();
+    ctx.arc(st.x,st.y,st.r,0,Math.PI*2);
+    ctx.fill();
+    st.y += st.s;
+    if(st.y>h){st.y=0; st.x=Math.random()*w;}
+  });
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+
+/* 🎈 BALLOONS */
+const balloonEmojis=["🎈","🎉","💜","💖","✨"];
+function spawnBalloon(){
+  const b=document.createElement("div");
+  b.className="balloon";
+  b.innerText=balloonEmojis[Math.floor(Math.random()*balloonEmojis.length)];
+  b.style.left=Math.random()*100+"vw";
+  b.style.animationDuration=8+Math.random()*6+"s";
+  document.body.appendChild(b);
+  setTimeout(()=>b.remove(),14000);
+}
+setInterval(spawnBalloon,900);
+
+/* 🔊 MUSIC CONTROL */
+const music=document.getElementById("bgMusic");
+const musicBtn=document.getElementById("musicBtn");
+music.volume=0.5;
+musicBtn.onclick=()=>{
+  if(music.paused){
+    music.play();
+    musicBtn.innerText="🔊";
+  }else{
+    music.pause();
+    musicBtn.innerText="🔇";
+  }
+};
+
+/* 🌙 THEME TOGGLE */
+const themeBtn=document.getElementById("themeBtn");
+themeBtn.onclick=()=>{
+  document.body.classList.toggle("light");
+  themeBtn.innerText=document.body.classList.contains("light")?"🌞":"🌙";
+};
+
+/* 📲 SHARE BUTTON */
+document.getElementById("shareBtn").onclick=()=>{
+  if(navigator.share){
+    navigator.share({
+      title:"Happy Birthday Prerna 💖",
+      text:"I made something special for you 🎉💖",
+      url:location.href
+    });
+  }else{
+    alert("Sharing not supported on this device 💜");
+  }
+};
+
+/* ✨ TYPING HERO TEXT (NEW STYLE) */
+const heroText="Happy Birthday Prerna 🎂💖";
+let ti=0;
+function typeHero(){
+  if(ti<heroText.length){
+    document.getElementById("typingText").innerHTML+=heroText.charAt(ti);
+    ti++;
+    setTimeout(typeHero,90);
+  }
+}
+typeHero();
+
+/* 🎉 CONFETTI BURST */
+setTimeout(()=>{
+  confetti({
+    particleCount:200,
+    spread:90,
+    origin:{y:0.6}
+  });
+},1200);
+
+/* 🎆 FIREWORKS */
+function launchFirework(){
+  const fw=document.createElement("div");
+  fw.className="firework";
+  fw.style.left=Math.random()*100+"vw";
+  fw.style.top=Math.random()*50+"vh";
+  fw.style.background=`hsl(${Math.random()*360},100%,70%)`;
+  fw.style.boxShadow=`0 0 15px ${fw.style.background}`;
+  document.body.appendChild(fw);
+  setTimeout(()=>fw.remove(),1000);
+}
+setInterval(launchFirework,1200);
+
+/* 🎆 FIREWORK ON NAME CLICK */
+function nameFireworks(){
+  for(let i=0;i<6;i++){
+    setTimeout(()=>confetti({
+      particleCount:120,
+      spread:120,
+      origin:{x:Math.random(),y:Math.random()*0.5}
+    }),i*200);
+  }
+}
+
+/* ❤️ HEART ALERT */
+const heartText="Prerna 💖 You make every moment brighter ✨ Stay happy always 🌸";
+let hi=0;
+function typeHeart(){
+  if(hi<heartText.length){
+    document.getElementById("heartText").innerHTML+=heartText.charAt(hi);
+    hi++;
+    setTimeout(typeHeart,40);
+  }
+}
+function createHearts(){
+  const container=document.querySelector(".floating-hearts");
+  setInterval(()=>{
+    const s=document.createElement("span");
+    s.innerHTML="💗";
+    s.style.left=Math.random()*100+"%";
+    s.style.bottom="10px";
+    s.style.animationDuration=2+Math.random()*2+"s";
+    container.appendChild(s);
+    setTimeout(()=>s.remove(),3000);
+  },300);
+}
+setTimeout(()=>{
+  document.getElementById("heartAlert").classList.remove("hidden");
+  document.getElementById("popSound").play();
+  typeHeart();
+  createHearts();
+},2000);
+function closeHeart(){
+  document.getElementById("heartAlert").classList.add("hidden");
+}
+
+/* 🎁 GIFTS POPUP */
+function openGift(el,title,msg){
+  document.getElementById("giftPopupTitle").innerText=title;
+  document.getElementById("giftPopupMsg").innerText=msg;
+  document.getElementById("giftPopup").classList.remove("hidden");
+  confetti({
+    particleCount:120,
+    spread:90,
+    origin:{y:0.6}
+  });
+}
+function closeGiftPopup(){
+  document.getElementById("giftPopup").classList.add("hidden");
+}
+
+/* 🖼️ 9 IMAGE SLIDER */
+const track = document.getElementById("sliderTrack");
+const slides = track.children;
+const dotsWrap = document.getElementById("sliderDots");
+let slideIndex = 0;
+
+for(let i=0;i<slides.length;i++){
+  const dot=document.createElement("span");
+  dot.onclick=()=>goSlide(i);
+  dotsWrap.appendChild(dot);
+}
+function updateDots(){
+  [...dotsWrap.children].forEach((d,i)=>{
+    d.classList.toggle("active", i===slideIndex);
+  });
+}
+function goSlide(i){
+  slideIndex=i;
+  track.style.transform=`translateX(-${slideIndex*100}%)`;
+  updateDots();
+}
+function nextSlide(){
+  slideIndex=(slideIndex+1)%slides.length;
+  goSlide(slideIndex);
+}
+function prevSlide(){
+  slideIndex=(slideIndex-1+slides.length)%slides.length;
+  goSlide(slideIndex);
+}
+updateDots();
+setInterval(nextSlide,4000);
+
+/* 🎂 BLOW CANDLE WITH LOVE EFFECT */
+function blowCandle(){
+  const flame=document.getElementById("flame");
+  flame.style.opacity="0";
+  flame.style.transform="translateX(-50%) scale(0)";
+  const wrap=document.getElementById("cakeWrap");
+
+  confetti({
+    particleCount:200,
+    spread:140,
+    origin:{y:0.55}
+  });
+
+  for(let i=0;i<24;i++){
+    const span=document.createElement("span");
+    span.innerHTML="💖";
+    span.style.position="absolute";
+    span.style.left=50+Math.random()*40-20+"%";
+    span.style.bottom="40px";
+    span.style.fontSize=12+Math.random()*12+"px";
+    span.style.animation="floatLove 3s linear forwards";
+    wrap.appendChild(span);
+    setTimeout(()=>span.remove(),3000);
+  }
+}
+
+/* ⏳ COUNTDOWN TIMER */
+const birthdayDate = new Date("2026-02-10T00:00:00").getTime();
+function updateCountdown(){
+  const now = new Date().getTime();
+  const diff = birthdayDate - now;
+
+  if(diff <= 0){
+    document.getElementById("cdDays").innerText="00";
+    document.getElementById("cdHours").innerText="00";
+    document.getElementById("cdMins").innerText="00";
+    document.getElementById("cdSecs").innerText="00";
+    return;
+  }
+
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff / (1000*60*60)) % 24);
+  const m = Math.floor((diff / (1000*60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("cdDays").innerText=String(d).padStart(2,"0");
+  document.getElementById("cdHours").innerText=String(h).padStart(2,"0");
+  document.getElementById("cdMins").innerText=String(m).padStart(2,"0");
+  document.getElementById("cdSecs").innerText=String(s).padStart(2,"0");
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* 🔐 SECRET UNLOCK */
+function unlockSecret(){
+  const msg=document.getElementById("secretMsg");
+  msg.classList.toggle("show");
+  confetti({particleCount:80,spread:80,origin:{y:0.6}});
+}
+
+/* 🎟️ SCRATCH CARD */
+const scratchCover=document.getElementById("scratchCover");
+scratchCover.addEventListener("click",()=>{
+  scratchCover.classList.add("hide");
+  confetti({particleCount:120,spread:100,origin:{y:0.6}});
+});
+
+/* 🎮 MINI GAME */
+const gameBox=document.getElementById("gameBox");
+const gameScoreEl=document.getElementById("gameScore");
+let score=0;
+
+function spawnPop(){
+  const p=document.createElement("div");
+  p.className="pop";
+  p.innerHTML="🎈";
+  p.style.left=Math.random()*90+"%";
+  p.onclick=()=>{
+    score++;
+    gameScoreEl.innerText=score;
+    confetti({particleCount:30,spread:60,origin:{y:0.7}});
+    p.remove();
+  };
+  gameBox.appendChild(p);
+  setTimeout(()=>p.remove(),2400);
+}
+setInterval(spawnPop,900);
+
+/* 🎉 EXTRA CONFETTI */
+setInterval(()=>{
+  confetti({
+    particleCount:60,
+    spread:60,
+    origin:{x:Math.random(), y:Math.random()*0.6}
+  });
+},9000);
+</script>
+
+</body>
+</html>
