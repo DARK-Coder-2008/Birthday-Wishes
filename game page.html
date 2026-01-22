@@ -120,9 +120,9 @@ canvas{
 /* ===== SURPRISE CARDS ===== */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:18px;
-  max-width:900px;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:14px;
+  max-width:760px;
   margin:auto;
 }
 
@@ -133,7 +133,7 @@ canvas{
 .card-inner{
   position:relative;
   width:100%;
-  height:190px;
+  height:150px;
   transform-style:preserve-3d;
   transition:.7s;
   cursor:pointer;
@@ -147,29 +147,30 @@ canvas{
 .card-face{
   position:absolute;
   inset:0;
-  border-radius:20px;
+  border-radius:16px;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:18px;
+  padding:12px;
   text-align:center;
   backface-visibility:hidden;
-  box-shadow:0 0 20px rgba(180,108,255,.5);
+  box-shadow:0 0 18px rgba(180,108,255,.45);
 }
 
 .card-front{
-  background:linear-gradient(135deg,#7a00cc,#b46cff);
-  font-size:20px;
+  background:linear-gradient(135deg,#8a2be2,#c77dff);
+  font-size:22px;
 }
 
 .card-back{
-  background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(14px);
   border:1px solid rgba(255,255,255,.2);
   transform:rotateY(180deg);
-  font-size:14px;
-  line-height:1.5;
+  font-size:12.5px;
+  line-height:1.45;
 }
+
 
 /* ===== LOVE QUIZ GAME ===== */
 .quiz-wrap{
@@ -319,7 +320,7 @@ canvas{
 <!-- MUSIC -->
 <div class="music-btn" id="musicBtn">🔊</div>
 <audio id="bgMusic" loop autoplay>
-  <source src="https://cdn.pixabay.com/audio/2023/02/28/audio_8f5c3a25c7.mp3" type="audio/mpeg">
+  <source src="happy-birthday-music-box-426283 (2).mp3" type="audio/mpeg">
 </audio>
 
 <!-- HERO -->
@@ -435,11 +436,18 @@ function drawStars(){
 drawStars();
 
 /* ===== MUSIC CONTROL ===== */
+window.addEventListener("load", () => {
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.9;
+  music.play().catch(() => {
+    document.body.addEventListener("click", () => music.play(), { once: true });
+  });
+});
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 let musicOn = true;
 
-music.volume = 0.6;
+music.volume = 0.9;
 music.play().catch(()=>{});
 
 musicBtn.onclick = ()=>{
@@ -508,7 +516,7 @@ const quizData = [
   {
     q:"✨ Who deserves unlimited happiness?",
     options:["Prerna 💖","Prerna 💖","Prerna 💖","Prerna 💖"],
-    correct:0
+    correct:1
   },
   {
     q:"🎁 What is the best birthday gift?",

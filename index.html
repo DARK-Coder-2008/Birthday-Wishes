@@ -82,13 +82,17 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
   align-items:center;
   flex-direction:column;
   transition:1s ease;
+  
 }
 #curtain h2{
-  font-size:28px;
+  font-family: 'Playfair Display', serif;
+  font-size:30px;
   margin-bottom:12px;
   color:#ff8ed6;
   text-shadow:0 0 20px #9f5cff;
+  text-align:center;
 }
+
 #curtain button{
   background:linear-gradient(135deg,#ff4fa7,#9f5cff);
   border:none;
@@ -167,10 +171,10 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
 
 /* 🍫 CAKE */
 .cake-area{
-  margin-top:22px;
+  margin-top:10vh;
   display:flex;
   flex-direction:column;
-  align-items:center;
+  justify-content:center;
 }
 .cake-wrap{
   position:relative;
@@ -189,7 +193,7 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
   transform:translateX(-50%);
   width:12px;
   height:40px;
-  background:black;
+  background:#382020;
   border-radius:6px;
   z-index:2;
 }
@@ -227,7 +231,7 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
 
 /* 🎁 SECTION */
 .section{
-  padding:45px 16px;
+  padding:0px 16px;
   text-align:center;
 }
 .section h2{
@@ -339,8 +343,8 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
   gap:18px;
 }
 .polaroid{
-  background:white;
-  color:#333;
+  background:#baa7e7;;
+  color:black;
   padding:8px 8px 14px;
   border-radius:6px;
   box-shadow:0 8px 20px rgba(0,0,0,0.35);
@@ -682,7 +686,7 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
 
 <!-- 🎭 CURTAIN -->
 <div id="curtain">
-  <h2>🎉 A Surprise For Ladaku Vimman 💖</h2>
+  <h2>🎉 A Surprise For My Ladaku Vimman 💖</h2>
   <button onclick="openCurtain()">Tap to Open 🎁</button>
 </div>
 
@@ -690,8 +694,8 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
 
 <!-- 🔊 MUSIC / THEME / SHARE -->
 <button id="musicBtn">🔊</button>
-<button id="themeBtn">🌙</button>
-<button id="shareBtn">📲</button>
+<!-- <button id="themeBtn">🌙</button>
+<button id="shareBtn">📲</button> -->
 
 <audio id="bgMusic" autoplay loop>
   <source src="happy.mp3" type="audio/mpeg">
@@ -721,12 +725,12 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
   <p class="subtext">Wishing you smiles, laughter & endless happiness 🌸✨</p>
 
   <!-- ⏳ COUNTDOWN -->
-  <div class="countdown">
+  <!-- <div class="countdown">
     <div class="cd-box"><span id="cdDays">00</span><small>Days</small></div>
     <div class="cd-box"><span id="cdHours">00</span><small>Hours</small></div>
     <div class="cd-box"><span id="cdMins">00</span><small>Minutes</small></div>
     <div class="cd-box"><span id="cdSecs">00</span><small>Seconds</small></div>
-  </div>
+  </div> -->
 
   <!-- 🍫 CAKE -->
   <div class="cake-area">
@@ -887,9 +891,10 @@ canvas#stars{position:fixed;inset:0;z-index:-2;}
 <section class="section">
   <h2>🎥 A Special Video For You</h2>
   <div class="video-wrap">
-    <video controls poster="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80">
-      <source src="Video.mp4" type="video/mp4">
-    </video>
+    <<video controls poster="thumbnail.jpg">
+  <source src="Video.mp4" type="video/mp4">
+</video>
+
   </div>
 </section>
 
@@ -955,6 +960,14 @@ function spawnBalloon(){
 setInterval(spawnBalloon,900);
 
 /* 🔊 MUSIC CONTROL */
+window.addEventListener("load", () => {
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.4;
+  music.play().catch(() => {
+    document.body.addEventListener("click", () => music.play(), { once: true });
+  });
+});
+
 const music=document.getElementById("bgMusic");
 const musicBtn=document.getElementById("musicBtn");
 music.volume=0.5;
@@ -969,24 +982,24 @@ musicBtn.onclick=()=>{
 };
 
 /* 🌙 THEME TOGGLE */
-const themeBtn=document.getElementById("themeBtn");
-themeBtn.onclick=()=>{
-  document.body.classList.toggle("light");
-  themeBtn.innerText=document.body.classList.contains("light")?"🌞":"🌙";
-};
+// const themeBtn=document.getElementById("themeBtn");
+// themeBtn.onclick=()=>{
+//   document.body.classList.toggle("light");
+//   themeBtn.innerText=document.body.classList.contains("light")?"🌞":"🌙";
+// };
 
-/* 📲 SHARE BUTTON */
-document.getElementById("shareBtn").onclick=()=>{
-  if(navigator.share){
-    navigator.share({
-      title:"Happy Birthday Prerna 💖",
-      text:"I made something special for you 🎉💖",
-      url:location.href
-    });
-  }else{
-    alert("Sharing not supported on this device 💜");
-  }
-};
+// /* 📲 SHARE BUTTON */
+// document.getElementById("shareBtn").onclick=()=>{
+//   if(navigator.share){
+//     navigator.share({
+//       title:"Happy Birthday Prerna 💖",
+//       text:"I made something special for you 🎉💖",
+//       url:location.href
+//     });
+//   }else{
+//     alert("Sharing not supported on this device 💜");
+//   }
+// };
 
 /* ✨ TYPING HERO TEXT (NEW STYLE) */
 const heroText="Happy Birthday Ladaku Vimman 🎂💖";
